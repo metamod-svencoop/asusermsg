@@ -66,15 +66,15 @@ static META_FUNCTIONS gMetaFunctionTable = {
 
 // Description of plugin
 plugin_info_t Plugin_info = {
-    META_INTERFACE_VERSION,                      // ifvers
-    "AngelScriptUserMsg",                        // name
-    "2.0",                                       // version
-    "2025",                                      // date
-    "hzqst",                                     // author
-    "https://github.com/hzqst/metamod-fallguys", // url
-    "ASUSERMSG",                                 // logtag, all caps please
-    PT_ANYTIME,                                  // (when) loadable
-    PT_NEVER,                                    // (when) unloadable
+    META_INTERFACE_VERSION,                                 // ifvers
+    "AngelScriptUserMsg",                                   // name
+    "2.0",                                                  // version
+    "2025",                                                 // date
+    "hzqst",                                                // author
+    "https://github.com/metamod-svencoop/metamod-svencoop", // url
+    "ASUSERMSG",                                            // logtag, all caps please
+    PT_ANYTIME,                                             // (when) loadable
+    PT_NEVER,                                               // (when) unloadable
 };
 
 // Global vars from metamod:
