@@ -123,9 +123,9 @@ C_DLLEXPORT int Meta_Query(const char* interfaceVersion, plugin_info_t** pPlugIn
         return FALSE;
     }
 
-    if (iMajorVersion < 5 || (iMajorVersion == 5 && iMinorVersion < 14))
+    if (iMajorVersion < 5 || (iMajorVersion == 5 && iMinorVersion < 18))
     {
-        pMetaUtilFuncs->pfnLogError(PLID, "Meta_Query version too low! expect \"%s\" but got \"%s\"", "5:14", interfaceVersion);
+        pMetaUtilFuncs->pfnLogError(PLID, "Meta_Query version too low! expect \"%s\" but got \"%s\"", "5:18", interfaceVersion);
         return FALSE;
     }
 
