@@ -226,7 +226,7 @@ enginefuncs_t meta_engfuncs =
         NewMessageEnd,   // pfnMessageEnd()
 
         NewWriteByte,   // pfnWriteByte()
-        NewWriteByte,   // pfnWriteChar()
+        NewWriteChar,   // pfnWriteChar()
         NewWriteShort,  // pfnWriteShort()
         NewWriteLong,   // pfnWriteLong()
         NewWriteAngle,  // pfnWriteAngle()
