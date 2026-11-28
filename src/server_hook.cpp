@@ -29,7 +29,7 @@ bool SC_SERVER_DECL CASEngineFuncs__BlockCurrentUserMsg(void* pthis SC_SERVER_DU
     return g_UserMsgHookManager.BlockCurrentUserMsg();
 }
 
-bool SC_SERVER_DECL CASEngineFuncs__GetUserMsgId(void* pthis SC_SERVER_DUMMYARG_NOCOMMA, CString* str)
+int SC_SERVER_DECL CASEngineFuncs__GetUserMsgId(void* pthis SC_SERVER_DUMMYARG_NOCOMMA, CString* str)
 {
     return g_UserMsgHookManager.GetUserMsgId(str->c_str());
 }

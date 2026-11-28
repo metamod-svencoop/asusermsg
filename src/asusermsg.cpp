@@ -199,11 +199,17 @@ bool CUserMsgHookManager::IsHooked() const
 
 bool CUserMsgHookManager::IsHookRegistered(int msgType) const
 {
+    if (msgType < 0 || msgType > 255)
+        return false;
+
     return !m_UserMsgCallbacks[msgType].empty();
 }
 
 bool CUserMsgHookManager::IsHookEnabled(int msgType) const
 {
+    if (msgType < 0 || msgType > 255)
+        return false;
+
     return m_msgHookEnabled[msgType];
 }
 
@@ -246,12 +252,23 @@ void CUserMsgHookManager::Shutdown()
     }
 }
 
+static CASModule* GetCurrentASModule()
+{
+    if (ASEXT_GetCurrentModule)
+        return ASEXT_GetCurrentModule();
+
+    auto pServerManager = ASEXT_GetServerManager ? ASEXT_GetServerManager() : NULL;
+    return pServerManager ? pServerManager->curModule : NULL;
+}
+
 bool CUserMsgHookManager::RegisterUserMsgHook(int msgType, aslScriptFunction* aslfn)
 {
     if (msgType < 0 || msgType > 255)
         return false;
 
-    auto callback = ASEXT_CreateCASFunction(aslfn, ASEXT_GetServerManager()->curModule, 1);
+    auto callback = ASEXT_CreateCASFunction(aslfn, GetCurrentASModule(), 1);
+    if (!callback)
+        return false;
 
     m_UserMsgCallbacks[msgType].emplace_back(callback);
     m_msgHookEnabled[msgType] = true;
@@ -299,7 +316,7 @@ bool CUserMsgHookManager::CallUserMsgHook()
 
 bool CUserMsgHookManager::CallUserMsgHook(int msgDest, int msgType, const Vector& origin, edict_t* pEdict)
 {
-    if (m_UserMsgCallbacks[msgType].empty())
+    if (msgType < 0 || msgType > 255 || m_UserMsgCallbacks[msgType].empty())
         return false;
 
     for (auto& callback : m_UserMsgCallbacks[msgType])
